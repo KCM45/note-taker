@@ -11,8 +11,8 @@ const fs = require("fs");
 // GET Route for retrieving all the tips
 notesRouter.get("/", (req, res) => {
   fs.readFile("./db/db.json", "utf-8", function (err, data) {
-    console.log(data);
-  }).then((data) => res.json(JSON.parse(data)));
+    console.log("data");
+  }).then((data) => res.json(data));
 });
-
+console.log(notesRouter.data, "DFAFD");
 module.exports = notesRouter;
