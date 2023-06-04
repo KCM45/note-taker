@@ -1,7 +1,7 @@
 /** @format */
 
-const notes = require("express");
-const db = require("./db/db.json");
+const express = require("express");
+const db = require("../db/db.json");
 const notesRouter = express();
 
 // GET Route for retrieving all the notes
