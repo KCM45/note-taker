@@ -3,7 +3,6 @@
 const express = require("express");
 const path = require("path");
 const api = require("./routes/index.js");
-const apiNotes = require("./routes/notes.js");
 
 const PORT = process.env.PORT || 3001;
 
@@ -26,15 +25,15 @@ app.get("/notes", (req, res) =>
   res.sendFile(path.join(__dirname, "/public/notes.html"))
 );
 
-// // GET API notes data
-// app.get("/api/notes", (req, res) => {
-//   res.sendFile(path.join(__dirname, "/db/db.json"));
-// });
+// GET API notes data
+app.get("/api/notes", (req, res) => {
+  res.sendFile(path.join(__dirname, "/db/db.json"));
+});
 
 // Wildcard route to direct users to a 404 page
-app.get("*", (req, res) =>
-  res.sendFile(path.join(__dirname, "public/pages/404.html"))
-);
+// app.get("*", (req, res) =>
+//   res.sendFile(path.join(__dirname, "public/pages/404.html"))
+// );
 
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT} 🚀`)
