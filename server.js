@@ -26,10 +26,10 @@ app.get("/notes", (req, res) =>
   res.sendFile(path.join(__dirname, "/public/notes.html"))
 );
 
-// GET API notes data
-app.get("/api/notes", (req, res) => {
-  res.sendFile(path.join(__dirname, "/db/db.json"));
-});
+// // GET API notes data
+// app.get("/api/notes", (req, res) => {
+//   res.sendFile(path.join(__dirname, "/db/db.json"));
+// });
 
 // Wildcard route to direct users to a 404 page
 app.get("*", (req, res) =>
