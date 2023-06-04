@@ -1,13 +1,12 @@
 /** @format */
 
 const express = require("express");
-const db = require("../db/db.json");
-const notesRouter = express();
+const notesRouter = express.Router();
 const fs = require("fs");
 const path = require("path");
 
 // GET Route for retrieving all the notes
-notesRouter.get("/api/notes", (req, res) => {
+notesRouter.get("/", (req, res) => {
   fs.readFile(path.join(__dirname, "../db/db.json"), "utf-8", (err, data) => {
     console.log(data);
     if (err) {
@@ -19,9 +18,8 @@ notesRouter.get("/api/notes", (req, res) => {
 });
 
 // POST Route for adding notes
-notesRouter.post("/api/notes", (req, res) => {
-  db.push(req.body);
-  fs.writeFile("../db/db.json", db);
+notesRouter.post("/", (req, res) => {
+  fs.writeFile(path.join(__dirname, "./db/db.json"), req.body);
 });
 
 module.exports = notesRouter;
