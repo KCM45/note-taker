@@ -1,18 +1,11 @@
 /** @format */
 
-//import * as notes from "express";
 const notes = require("express");
+const db = require("./db/db.json");
+const notesRouter = express();
 
-const notesRouter = notes.Router();
-
-//import * as fs from "fs";
-const fs = require("fs");
-
-// GET Route for retrieving all the tips
-notesRouter.get("/", (req, res) => {
-  fs.readFile("./db/db.json", "utf-8", function (err, data) {
-    console.log("data");
-  }).then((data) => res.json(data));
+// GET Route for retrieving all the notes
+notesRouter.get("/api/notes", (req, res) => {
+  res.json(db);
 });
-console.log(notesRouter.data, "DFAFD");
 module.exports = notesRouter;
