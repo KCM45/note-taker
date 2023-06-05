@@ -17,12 +17,18 @@ notesRouter.get("/", (req, res) => {
 });
 
 // POST Route for adding notes
-// POST Route for adding notes
 notesRouter.post("/", (req, res) => {
   console.log(req.body);
+  let notes = [];
+  let raw = fs.readFileSync(path.join(__dirname, "../db/db.json"), "utf-8");
+  notes.push(JSON.parse(raw));
+  console.log("Notes1", notes);
+  notes.push(req.body);
+  console.log("Notes", notes);
+
   fs.writeFile(
-    path.join(__dirname, "./db/db.json"),
-    JSON.stringify(req.body),
+    path.join(__dirname, "../db/db.json"),
+    JSON.stringify(notes),
     "utf8",
     (err) => {
       if (err) {
@@ -34,5 +40,4 @@ notesRouter.post("/", (req, res) => {
     }
   );
 });
-
 module.exports = notesRouter;
