@@ -4,6 +4,7 @@ const express = require("express");
 const notesRouter = express.Router();
 const fs = require("fs");
 const path = require("path");
+const { v1: uuidv1 } = require("uuid");
 
 notesRouter.get("/", (req, res) => {
   fs.readFile(path.join(__dirname, "../db/db.json"), "utf-8", (err, data) => {
@@ -24,8 +25,9 @@ notesRouter.post("/", (req, res) => {
   current.forEach((element) => {
     notes.push(element);
   });
-  notes.push(req.body);
-  console.log("Notes", notes);
+  const newNote = { id: uuidv1(), title: req.body.title, text: req.body.text };
+  notes.push(newNote);
+  console.log("Notes", newNote);
 
   fs.writeFile(
     path.join(__dirname, "../db/db.json"),
